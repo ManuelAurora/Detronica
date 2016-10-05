@@ -10,20 +10,34 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *counterLabel;
+@property (weak, nonatomic) IBOutlet UITextField *numberTextField;
+
+
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (IBAction)count:(UIButton *)sender {
+    
+    double number = [[_numberTextField text] doubleValue];
+    
+    int counter =  [[_counterLabel text]  isEqual: @"#"] ? 0 : [[_counterLabel text] intValue];
+    
+    double result = pow(number, 2);
+    
+    counter += 1;
+    
+    _numberTextField.text = [NSString stringWithFormat: @"%.2f", result];
+    
+    _counterLabel.text = [NSString stringWithFormat: @"%d", counter];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)restart:(UIButton *)sender {
+    
+    _numberTextField.text = @"";
+    _counterLabel.text    = @"#";
 }
-
 
 @end
