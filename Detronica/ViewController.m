@@ -29,7 +29,7 @@
     
     counter += 1;
     
-    _numberTextField.text = [NSString stringWithFormat: @"%.2f", result];
+    _resultLabel.text = [NSString stringWithFormat: @"%.2f", result];
     
     _counterLabel.text = [NSString stringWithFormat: @"%d", counter];
 }
