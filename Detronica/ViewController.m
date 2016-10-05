@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *counterLabel;
 @property (weak, nonatomic) IBOutlet UITextField *numberTextField;
 
-
 @end
 
 @implementation ViewController
@@ -44,11 +43,30 @@
     _counterLabel.text = [NSString stringWithFormat: @"%d", counter];
 }
 
+- (BOOL) canPerformAction:(SEL)action withSender:(id)sender {
+    
+    if (action == @selector(paste:) || action == @selector(copy:) || action == @selector(cut:))
+        
+        return NO;
+    
+    return [super canPerformAction:action withSender:sender];
+}
+
 - (IBAction)restart:(UIButton *)sender {
     
     _resultLabel.text     = @"Результат";
     _numberTextField.text = @"";
     _counterLabel.text    = @"#";
+}
+
+- (void) viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    _numberTextField.inputAssistantItem.leadingBarButtonGroups = @[];
+    _numberTextField.inputAssistantItem.trailingBarButtonGroups = @[];
+    
+    [_numberTextField becomeFirstResponder];
 }
 
 @end
