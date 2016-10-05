@@ -21,21 +21,32 @@
 
 - (IBAction)count:(UIButton *)sender {
     
-    double number = [[_numberTextField text] doubleValue];
+    int power = 2;
+    
+    int number = [[_numberTextField text] intValue];
     
     int counter =  [[_counterLabel text]  isEqual: @"#"] ? 0 : [[_counterLabel text] intValue];
     
-    double result = pow(number, 2);
+    int result = 0;
     
     counter += 1;
     
-    _resultLabel.text = [NSString stringWithFormat: @"%.2f", result];
+    for (int i = 0; i < power - 1; i++)
+    {
+        for (int j = 0; j < number; j++)
+        {
+            result += number;
+        }
+    }
+    
+    _resultLabel.text = [NSString stringWithFormat: @"%d", result];
     
     _counterLabel.text = [NSString stringWithFormat: @"%d", counter];
 }
 
 - (IBAction)restart:(UIButton *)sender {
     
+    _resultLabel.text     = @"Результат";
     _numberTextField.text = @"";
     _counterLabel.text    = @"#";
 }
